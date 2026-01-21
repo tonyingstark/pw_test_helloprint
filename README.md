@@ -4,7 +4,7 @@ Automated end-to-end tests for the HelloPrint e-commerce platform using Playwrig
 
 ## Overview
 
-This repository contains comprehensive E2E test automation for the HelloPrint checkout flow, validating product selection, cart management, and purchase workflows across multiple browsers.
+This repository contains E2E test automation for the HelloPrint add-to-cart workflow, validating product selection, color variants, print run quantities, and cart validation across multiple browsers.
 
 ## Setup Instructions
 
@@ -16,8 +16,8 @@ This repository contains comprehensive E2E test automation for the HelloPrint ch
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
-cd HelloPrint-PW-Automation
+git clone https://github.com/tonyingstark/pw_test_helloprint.git
+cd pw_test_helloprint
 ```
 
 2. Install dependencies:
@@ -38,7 +38,7 @@ npx playwright test
 
 ### Run tests in a specific file:
 ```bash
-npx playwright test tests/e2e/checkout.spec.ts
+npx playwright test tests/addToCart.spec.ts
 ```
 
 ### Run tests with a specific browser:
@@ -80,21 +80,23 @@ Detailed test results are stored in the `test-results/` directory.
 
 ```
 ├── tests/
-│   └── e2e/
-│       └── checkout.spec.ts          # Main checkout flow tests
-├── playwright.config.ts               # Playwright configuration
-├── package.json                       # Project dependencies
-├── README.md                          # This file
-└── TEST-NOTES.md                      # Test implementation details
+│   └── addToCart.spec.ts          # Add-to-cart flow tests
+├── .github/
+│   └── workflows/
+│       └── playwright.yml         # GitHub Actions CI/CD
+├── playwright.config.ts           # Playwright configuration
+├── package.json                   # Project dependencies
+├── README.md                      # This file
+└── TEST-NOTES.md                  # Test implementation details
 ```
 
 ## Test Coverage
 
-- **checkout.spec.ts** - Complete E2E checkout flow including:
+- **addToCart.spec.ts** - E2E add-to-cart workflow including:
   - Product selection (Ceramic Modern Coffee Mug)
   - Color variant selection (Red)
   - Print run quantity selection (100 units)
-  - Cart validation (price, quantity, color)
+  - Cart validation (price, quantity, color verification)
   - Cart summary verification
 
 ## Browser Support
@@ -106,7 +108,8 @@ Tests run against:
 
 ## Continuous Integration
 
-Configure CI/CD by setting the `CI` environment variable. The config will:
+GitHub Actions workflow configured to:
+- Run tests on push/pull requests
 - Run tests serially on CI (not in parallel)
 - Retry failed tests up to 2 times
 - Generate HTML reports
